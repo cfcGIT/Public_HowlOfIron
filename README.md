@@ -26,3 +26,12 @@ After this project I can say I have a very good experience using Gameplay Abilit
 During this project we have a problem with the optimization of the game. Our enviroment was procedural and very small pieces, in our first map we have a 40000 actos in scene. I develop with other programmer a tool that allow us to group and merge actors in the scene. We inherit from BoxTrigger and make some filters to select actors.
 The first method is select all that is inside the trigger, the second method filters actor by staticMesh, it only select the actors that have the mesh filter, also we upgrade this filter became an array filter and use it with two or more static mesh. The third method is similar than the second one, but it filter by Material of the StaticMesh, also it was upgraded a few days after with the array filter. The last mode allow us to create Instanciated Actors, it create an Actor with the Instanced Actor component and copy the transform of the selections to the component.
 After two weeks with this tool, we reduced the actors in our map from 40000 to only 7000 actors in editor, with this we upgrade our performance around 10ms and allow us to reach the 60 fps ingame.
+
+
+## Perception System
+
+We created our own perception System. During two weeks with other programmer we research and try to create a good system. We create a modular system that allow to create diferent types of perception that increase the value of the detection. We created 2 types of components: DetectorActorComponent and DetectableActorComponent, with this we can create diferents types of detectable actors like the player or even the dead bodies of the other enemies that aware others of the position of the player. The first module we created was the vision detection, in it, first we calculate the distance between the player and the enemy, if the player is near enough, it will raycast to check if it can see it. Other perception is NearPerception, it increase the detecion value if the player is in range, we use it to dectect the player when is in the enemy back. Other type is SoundDetection, when the player do some action or ability, it call a detector actor if it is in range, and send to it the increase value from the sound.
+Also each type of detection have a weight to allow Design departament to change the values when they want.
+
+
+
