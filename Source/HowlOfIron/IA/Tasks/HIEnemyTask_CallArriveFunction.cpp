@@ -7,7 +7,7 @@
 
 UHIEnemyTask_CallArriveFunction::UHIEnemyTask_CallArriveFunction()
 {
-	bNotifyTick = true;
+	bNotifyTick = false;
 	bCreateNodeInstance = true;
 }
 

@@ -142,3 +142,8 @@ void UHIEnemyHUD::HIChangeDetection(float _detection)
 
     HICalculateDetectionIndicator();
 }
+
+void UHIEnemyHUD::HISetVulnerability(bool _val)
+{
+
+}

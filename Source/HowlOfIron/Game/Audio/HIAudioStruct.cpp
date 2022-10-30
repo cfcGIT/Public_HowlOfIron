@@ -8,6 +8,7 @@
 #include "Components/AudioComponent.h"
 #include "Engine/DataTable.h"
 #include "../VoiceActors/HIDialogueComponent.h"
+#include "MapLogic/HIObjectPooler_Actors.h"
 
 void UHIAudio::HIUseSound2D(AActor* _owningActor, FDataTableRowHandle _soundRow)
 {

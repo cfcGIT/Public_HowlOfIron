@@ -28,7 +28,17 @@ void UHIBossHUD::NativeConstruct()
 void UHIBossHUD::NativeTick(const FGeometry& MyGeometry, float InDeltaTime)
 {
 	Super::NativeTick(MyGeometry, InDeltaTime);
+
 	HIUpdateData();
+}
+
+void UHIBossHUD::HIInitAttributes(const class UHIEnemiesAttributes* _attributes) 
+{
+    maxHealth = _attributes->GetmaxHealth();
+    health = _attributes->Gethealth();
+    
+    HICalculateHealthBar();
+    HIUpdateData();
 }
 
 bool UHIBossHUD::HIGetvulnerability()
@@ -36,7 +46,8 @@ bool UHIBossHUD::HIGetvulnerability()
    return isVulnerable;
 }
 
-void UHIBossHUD::HISetvulnerability(bool _vulnerability)
+void UHIBossHUD::HISetVulnerability(bool _vulnerability)
 {
    isVulnerable = _vulnerability;
+   HIUpdateData();
 }

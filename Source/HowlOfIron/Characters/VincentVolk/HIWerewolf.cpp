@@ -30,6 +30,7 @@
 #include "MapLogic/HITeleportPawn.h"
 #include "MapLogic/HIWall.h"
 #include "UI/HIButtonHUD.h"
+#include "HowlOfIron/MapLogic/HIAnchorage.h"
 
 AHIWerewolf::AHIWerewolf() :
     distanceToWallToClimbFromFloor(1000.f),
@@ -516,7 +517,7 @@ bool AHIWerewolf::JumpToClimb()
         DrawDebugLine(GetWorld(), startRay, endRay, FColor::Red, false, 0, 0, 1);
     }
 
-    isRayHit = GetWorld()->LineTraceSingleByChannel(outHit, startRay, endRay, GAME_TRACE_WALL, collisionParams);
+    isRayHit = GetWorld()->LineTraceSingleByChannel(outHit, GetActorLocation(), endRay, GAME_TRACE_WALL, collisionParams);
     FVector center, extent;
 
     if (isRayHit)
@@ -570,6 +571,7 @@ bool AHIWerewolf::JumpToClimb()
             abilityData->jumpTargetPosition = jumpTargetPosition;
             abilityData->heightOfWallToClimb = wallCenter.Z + wallExtent.Z;
             abilityData->wallClimb = true;
+            abilityData->wallPosition = targetWall->GetActorLocation();
 
             FVector2D outScreenPos;
             float outRotationAngle = 0.f;
@@ -691,10 +693,10 @@ bool AHIWerewolf::SameLevelExecution()
 
     if (UHIGameData::HIGetDebugMode())
     {
-        DrawDebugBox(GetWorld(), executionBoxPosition, FVector(sameLevelExecutionDistance, sameLevelExecutionDistance, 100.f), FQuat::Identity, FColor::Magenta, false, 0.1f);
+        DrawDebugBox(GetWorld(), executionBoxPosition, FVector(sameLevelExecutionDistance, sameLevelExecutionDistance, 100.f), GetActorRotation().Quaternion(), FColor::Magenta, false, 0.1f);
     }
 
-    isRayHit = GetWorld()->SweepMultiByChannel(enemyHits, executionBoxPosition, executionBoxPosition + 0.01f, FQuat::Identity, GAME_TRACE_ENEMY, FCollisionShape::MakeBox(FVector(sameLevelExecutionDistance, sameLevelExecutionDistance, 100.f)));
+    isRayHit = GetWorld()->SweepMultiByChannel(enemyHits, executionBoxPosition, executionBoxPosition + 0.01f, GetActorRotation().Quaternion(), GAME_TRACE_ENEMY, FCollisionShape::MakeBox(FVector(sameLevelExecutionDistance, sameLevelExecutionDistance, 100.f)));
 
     if (isRayHit)
     {
@@ -786,8 +788,9 @@ bool AHIWerewolf::CombatFinisher()
     TArray<FHitResult> enemyHits;
     FCollisionQueryParams queryParams;
     queryParams.AddIgnoredActor(this);
-
     isRayHit = GetWorld()->SweepMultiByChannel(enemyHits, startRay, endRay, FQuat::Identity, GAME_TRACE_ENEMY, FCollisionShape::MakeCapsule(topExecutionCapsuleRadius, topExecutionCapsuleHeight / 2), queryParams);
+
+
 
     if (isRayHit)
     {
@@ -1087,7 +1090,9 @@ bool AHIWerewolf::HICheckRaysToJumpBetweenBuildings(FHitResult& anchorageHit_)
 
         isRayHit = GetWorld()->LineTraceSingleByChannel(anchorageHit_, startRay, endRay, GAME_TRACE_ANCHORAGE, collisionParams);
 
-        if (isRayHit)
+        AHIAnchorage* pAnchorage = Cast<AHIAnchorage>(anchorageHit_.GetActor());
+
+        if (pAnchorage && isRayHit)
         {
             endRay = startRay + forwardRotator.Vector() * distanceToBuildingToJump;
             isRayHit = GetWorld()->LineTraceSingleByChannel(buildingHit, startRay, endRay, GAME_TRACE_BUILDING, collisionParams); // Si est� pegado a la pared del edificio no lo atraviesa
@@ -1144,22 +1149,24 @@ void AHIWerewolf::SetIsDoingFinisher(bool _isDoingFinisher)
 
 void AHIWerewolf::OnHitBegin(AActor* _selfActor, AActor* _otherActor, FVector _normalImpulse, const FHitResult& _hit)
 {
-    if (isClimbing)
-    {
-        AHIWall* wall = Cast<AHIWall>(_otherActor);
-
-        if (wall)
-        {
-            // Raycast to see if the wall is in front of the werewolf
-            FHitResult hitResult;
-            bool traceResult = GetWorld()->LineTraceSingleByChannel(hitResult, GetActorLocation(), GetActorLocation() + GetActorForwardVector() * 500.f, GAME_TRACE_WALL, collisionParams);
-            FVector safeDirection = hitResult.Normal * -1;
-
-            if (traceResult && hitResult.bBlockingHit)
-            {
-                GetCharacterMovement()->GravityScale = 0.f;
-                SetActorRotation(safeDirection.Rotation());
-            }
-        }
-    }
+//     if (isClimbing)
+//     {
+//         AHIWall* wall = Cast<AHIWall>(_otherActor);
+// 
+//         if (wall)
+//         {
+//             // Raycast to see if the wall is in front of the werewolf
+//             FHitResult hitResult;
+// 
+//             //(_otherActor->GetActorLocation()-_selfActor->GetActorLocation()) *500.f
+//             bool traceResult = GetWorld()->LineTraceSingleByChannel(hitResult, GetActorLocation(), GetActorLocation() + GetActorForwardVector() * 500.f, GAME_TRACE_BUILDING, collisionParams);
+//             FVector safeDirection = hitResult.Normal * -1;
+// 
+//             if (traceResult && hitResult.bBlockingHit)
+//             {
+//                 GetCharacterMovement()->GravityScale = 0.f;
+//                 //SetActorRotation(safeDirection.Rotation());
+//             }
+//         }
+//     }
 }

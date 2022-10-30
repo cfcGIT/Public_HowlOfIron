@@ -8,12 +8,12 @@
 UCLASS()
 class HOWLOFIRON_API UHIBossHUD : public UHIEnemyHUD
 {
-   GENERATED_BODY()
+    GENERATED_BODY()
 public:
-   virtual bool Initialize() override;
-   virtual void NativePreConstruct() override;
-   virtual void NativeConstruct() override;
-   virtual void NativeTick(const FGeometry& MyGeometry, float InDeltaTime) override;
+    virtual bool Initialize() override;
+    virtual void NativePreConstruct() override;
+    virtual void NativeConstruct() override;
+    virtual void NativeTick(const FGeometry& MyGeometry, float InDeltaTime) override;
 
 public:
 
@@ -22,18 +22,16 @@ protected:
 
 
 private:
-   UPROPERTY()
-      bool isVulnerable;
+    UPROPERTY()
+        bool isVulnerable;
 
 public:
-   UFUNCTION(BlueprintCallable, BlueprintPure)
-      bool HIGetvulnerability();
+    virtual void HIInitAttributes(const class UHIEnemiesAttributes* _attributes) override;
 
-   UFUNCTION(BlueprintCallable)
-      void HISetvulnerability(bool _vulnerability);
+    UFUNCTION(BlueprintCallable, BlueprintPure)
+        bool HIGetvulnerability();
 
-   UFUNCTION(BlueprintImplementableEvent)
-      void HIUpdateData();
+    virtual void HISetVulnerability(bool _val) override;
 
 protected:
 

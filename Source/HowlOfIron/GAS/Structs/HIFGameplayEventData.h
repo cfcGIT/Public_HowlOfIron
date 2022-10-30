@@ -38,5 +38,8 @@ public:
     UPROPERTY(EditAnywhere, BlueprintReadWrite)
         bool wallClimb;
 
+    UPROPERTY(EditAnywhere, BlueprintReadWrite)
+        FVector wallPosition;
+
 };
 

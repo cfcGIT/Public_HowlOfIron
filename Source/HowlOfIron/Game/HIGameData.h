@@ -40,6 +40,8 @@ private:
     static UPROPERTY() int maxEnemiesFirstRing;
     static UPROPERTY() int maxEnemiesSecondRing;
     static UPROPERTY() FVector werewolfEQSPosition;
+    static UPROPERTY() FVector steamPosition;
+
 
     static UPROPERTY(Transient) UHIGameOverworldDirector* gameManager;
     static UPROPERTY(Transient) AHIAmbientSound* speaker2D;
@@ -158,6 +160,11 @@ public:
     UFUNCTION(BlueprintCallable)
         static FGameplayTag HICheckClass(FGameplayTagContainer _containertoCheck);
 
+    UFUNCTION(BlueprintCallable)
+        static void HISetSteamPosition(FVector _pos);
+
+    UFUNCTION(BlueprintCallable)
+        static FVector HIGetSteamPosition();
 
     UFUNCTION(BlueprintCallable)
         static class UWorld* HIGetWerewolfWorld();
@@ -251,4 +258,7 @@ UFUNCTION(BlueprintCallable)
             
     UFUNCTION(BlueprintCallable)
         static float HIGetFPS();
+
+    UFUNCTION(BlueprintCallable)
+    static void HIKillEnemies();
 };

@@ -26,7 +26,7 @@
 #if WITH_EDITOR
 	# define CHEATS 1
 #else
-	# define CHEATS 1
+	# define CHEATS 0
 #endif
 
 // Collision presets

@@ -23,6 +23,7 @@ TArray<AHIEnemy*> UHIGameData::enemiesThirdRingArray;
 int UHIGameData::maxEnemiesFirstRing = 0;
 int UHIGameData::maxEnemiesSecondRing = 0;
 FVector UHIGameData::werewolfEQSPosition = FVector(0.f);
+FVector UHIGameData::steamPosition = FVector(0.f);
 
 
 UHIGameOverworldDirector* UHIGameData::gameManager = nullptr;
@@ -260,6 +261,16 @@ FGameplayTag UHIGameData::HICheckClass(FGameplayTagContainer _containertoCheck)
     return FGameplayTag();
 }
 
+void UHIGameData::HISetSteamPosition(FVector _pos)
+{
+steamPosition = _pos;
+}
+
+FVector UHIGameData::HIGetSteamPosition()
+{
+return steamPosition;
+}
+
 class UWorld* UHIGameData::HIGetWerewolfWorld()
 {
     if (playerWerewolf && playerWerewolf->IsValidLowLevel())
@@ -399,7 +410,7 @@ void UHIGameData::HIClearStaticReferences()
 bool UHIGameData::IsWithEditor()
 {
 
-return true;
+//return true;
 
 #if WITH_EDITOR
     return true;
@@ -551,4 +562,12 @@ void UHIGameData::HISetPlayerController(AHIWerewolfController* _playerController
 float UHIGameData::HIGetFPS()
 {
     return playerController->HIGetFPS();
+}
+
+void  UHIGameData::HIKillEnemies()
+{
+    for (AHIEnemy* enemy : enemiesArray)
+    {
+        AHIObjectPooler_Actors::HIGetObjectPooler()->DespawnItem(enemy);
+    }
 }

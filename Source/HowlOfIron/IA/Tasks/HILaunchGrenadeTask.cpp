@@ -9,7 +9,7 @@ EBTNodeResult::Type UHILaunchGrenadeTask::ExecuteTask(UBehaviorTreeComponent& Ow
 	AHIEnemyController* enemyController = Cast<AHIEnemyController>(OwnerComp.GetOwner());
 	AHIEnemy* enemy = enemyController->GetPawn<AHIEnemy>();
 
-	enemy->HITryLaunchGranade(UHIGameData::HIGetWerewolfLocation());
+	enemy->HITryLaunchGranade(UHIGameData::HIGetSteamPosition());
 
 	return EBTNodeResult::Succeeded;
 }

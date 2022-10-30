@@ -1386,3 +1386,8 @@ FReply UHIPauseMenu::NativeOnKeyDown(const FGeometry& InGeometry, const FKeyEven
 
     return FReply::Unhandled();
 }
+
+int UHIPauseMenu::HIGetFPSIndex()
+{
+    return showFPSIndex;
+}

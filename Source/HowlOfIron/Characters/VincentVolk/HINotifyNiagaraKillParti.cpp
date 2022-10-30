@@ -2,6 +2,9 @@
 
 
 #include "Characters/VincentVolk/HINotifyNiagaraKillParti.h"
+#include "AbilitySystemBlueprintLibrary.h"
+#include "AbilitySystemComponent.h"
+#include "Particles/ParticleSystemComponent.h"
 
 void UHINotifyNiagaraKillParti::NotifyEnd(class USkeletalMeshComponent* MeshComp, class UAnimSequenceBase* Animation)
 {

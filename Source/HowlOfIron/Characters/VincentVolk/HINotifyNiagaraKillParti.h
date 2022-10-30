@@ -4,6 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "AnimNotifyState_TimedNiagaraEffect.h"
+#include "GameplayTagContainer.h"
 #include "HINotifyNiagaraKillParti.generated.h"
 
 /**

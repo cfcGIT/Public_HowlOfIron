@@ -32,6 +32,9 @@ public:
         UHIButtonClass* continueButton;
 
     UPROPERTY(BlueprintReadWrite, meta = (BindWidget))
+        UHIButtonClass* playgroundButton;
+
+    UPROPERTY(BlueprintReadWrite, meta = (BindWidget))
         UHIButtonClass* levelSelectorButton;
 
     UPROPERTY(BlueprintReadWrite, meta = (BindWidget))
@@ -91,6 +94,9 @@ public:
         void HIContinueButton();
 
     UFUNCTION()
+        void HIPlaygroundButton();
+
+    UFUNCTION()
         void HIBackLevelButton();
 
     UFUNCTION()
@@ -146,6 +152,12 @@ public:
 
     UFUNCTION(BlueprintImplementableEvent)
         void HIUnselectContinueButton();
+
+    UFUNCTION(BlueprintImplementableEvent)
+        void HISelectPlaygroundButton();
+
+    UFUNCTION(BlueprintImplementableEvent)
+        void HIUnselectPlaygroundButton();
 
 	UFUNCTION(BlueprintImplementableEvent)
 		void HISelectCreditsButton();

@@ -68,7 +68,7 @@ void UHIVincentHUD::HIChangeHealth(float _health)
 
 void UHIVincentHUD::HIChangeHowlNum(float _howl)
 {
-	howl = _howl;
+	howl = FMath::Max(0.05f, _howl);
 	HICalculateHowl();
 }
 

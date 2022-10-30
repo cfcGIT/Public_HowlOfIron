@@ -86,7 +86,7 @@ void AHIHitAreaActor::HIUpdateNiagaraParameters()
 				hitAreaDirection += (hitResult.Component->Bounds.Origin - hitResult.ImpactPoint);
 			}
 
-			niagaraParticleComponent->SetNiagaraVariableVec3(END_POSITION_VARIABLE, FVector(hitAreaDirection.X, hitAreaDirection.Y, hitAreaDirection.Z + 50.f));
+			niagaraParticleComponent->SetNiagaraVariableVec3(END_POSITION_VARIABLE, FVector(hitAreaDirection.X, hitAreaDirection.Y, hitAreaDirection.Z + 40.f));
 		}
 		else
 		{
@@ -113,7 +113,7 @@ void AHIHitAreaActor::HIUpdateNiagaraParameters()
 				hitAreaDirection += (hitResult.Component->Bounds.Origin - hitResult.ImpactPoint);
 			}
 
-			niagaraParticleComponent->SetNiagaraVariableVec3(END_POSITION_VARIABLE, hitAreaDirection);
+			niagaraParticleComponent->SetNiagaraVariableVec3(END_POSITION_VARIABLE, FVector(hitAreaDirection.X, hitAreaDirection.Y, hitAreaDirection.Z + 40.f));
 		}
 		else {
 			hitAreaDirection = (DirectionShootPoint - hitAreaEmiter->GetComponentLocation()).GetSafeNormal();
@@ -220,7 +220,11 @@ void AHIHitAreaActor::Tick(float DeltaTime)
 
 void AHIHitAreaActor::StopHitArea()
 {
-	niagaraParticleComponent->DestroyInstance();
+	if (niagaraParticleComponent)
+	{
+		niagaraParticleComponent->DestroyInstance();
+	}
+
 	Destroy();
 }
 

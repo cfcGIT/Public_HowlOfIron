@@ -135,6 +135,9 @@ public:
     UPROPERTY(VisibleAnywhere, BlueprintReadOnly)
         bool changeTargetAllowed = false;
 
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite)
+		bool buleanoWarro = false;
+
     UPROPERTY(Transient)
         AActor* targetSnapped = nullptr;
 

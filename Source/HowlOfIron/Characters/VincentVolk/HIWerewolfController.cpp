@@ -14,6 +14,7 @@
 #include "GameFramework/GameModeBase.h"
 #include "Blueprint/WidgetBlueprintLibrary.h"
 #include "Game/HIGameInstance.h"
+#include "Components/TextBlock.h"
 #include "MapLogic/HITeleportPawn.h"
 
 FVector FixMovement(FVector Forward)
@@ -104,7 +105,7 @@ void AHIWerewolfController::Tick(float _deltaSeconds)
 
     if (werewolfOwner && werewolfOwner->widgetref)
     {
-        if (werewolfOwner->widgetref->GetVisibility() == ESlateVisibility::SelfHitTestInvisible)
+        if (pauseMenu->HIGetFPSIndex() == 1)
         {
             HICalculateFPS(1.0f / _deltaSeconds);
             werewolfOwner->widgetref->HIUpdateFPSMessage(HIGetFPS());

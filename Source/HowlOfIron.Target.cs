@@ -14,6 +14,8 @@ public class HowlOfIronTarget : TargetRules
         if ((Target.Configuration != UnrealTargetConfiguration.Shipping))
         {
             ExtraModuleNames.Add("GameplayDebugger");
+
+
         }
     }
 }

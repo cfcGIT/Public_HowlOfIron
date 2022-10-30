@@ -30,6 +30,7 @@ void UHIMainMenu::NativeConstruct()
     //  playButton->customButton->OnClicked.AddDynamic(this, &UHIMainMenu::HIPlayButton);
     continueButton->customButton->OnClicked.AddDynamic(this, &UHIMainMenu::HIContinueButton);
     levelSelectorButton->customButton->OnClicked.AddDynamic(this, &UHIMainMenu::HILevelSelectorButton);
+    playgroundButton->customButton->OnClicked.AddDynamic(this, &UHIMainMenu::HIPlaygroundButton);
     settingsButton->customButton->OnClicked.AddDynamic(this, &UHIMainMenu::HISettingsButton);
     creditsButton->customButton->OnClicked.AddDynamic(this, &UHIMainMenu::HICreditsButton);
     exitButton->customButton->OnClicked.AddDynamic(this, &UHIMainMenu::HIQuitGame);
@@ -58,6 +59,14 @@ int UHIMainMenu::HIGetButtonIndex()
 
 
 void UHIMainMenu::HIContinueButton() // @TODO: Hay que hacer carga y guardado de datos
+{
+    //                        ****** PROVISIONAL *******
+    //HIOpenLevel();
+    //UGameplayStatics::OpenLevel(this, FName(TEXT("Lvl_Steelheart")), false);
+    //UHIGameData::HIClearStaticReferences();
+}
+
+void UHIMainMenu::HIPlaygroundButton() // @TODO: Hay que hacer carga y guardado de datos
 {
     //                        ****** PROVISIONAL *******
     //HIOpenLevel();
@@ -124,9 +133,9 @@ void UHIMainMenu::HIUpdateButtonsIndex(int _operator)
 {
     buttonsIndex += _operator;
 
-    if (buttonsIndex > 3)
+    if (buttonsIndex > 4)
     {
-        buttonsIndex = 3;
+        buttonsIndex = 4;
     }
     else if (buttonsIndex < 0)
     {
@@ -142,24 +151,37 @@ void UHIMainMenu::HIMenuNavigation()
         HIUnselectContinueButton();
         HIUnselectQuitButton();
         HIUnselectCreditsButton();
+        HIUnselectPlaygroundButton();
         HISelectPlayButton();
         break;
     case 1:
         HIUnselectPlayButton();
         HIUnselectQuitButton();
         HIUnselectCreditsButton();
+        HIUnselectPlaygroundButton();
         HISelectContinueButton();
         break;
+
     case 2:
         HIUnselectPlayButton();
         HIUnselectContinueButton();
         HIUnselectQuitButton();
+        HIUnselectCreditsButton();
+        HISelectPlaygroundButton();
+        break;
+
+    case 3:
+        HIUnselectPlayButton();
+        HIUnselectContinueButton();
+        HIUnselectQuitButton();
+        HIUnselectPlaygroundButton();
         HISelectCreditsButton();
         break;
-    case 3:
+    case 4:
 		HIUnselectPlayButton();
 		HIUnselectContinueButton();
         HIUnselectCreditsButton();
+        HIUnselectPlaygroundButton();
 		HISelectQuitButton();
 		break;
     default:

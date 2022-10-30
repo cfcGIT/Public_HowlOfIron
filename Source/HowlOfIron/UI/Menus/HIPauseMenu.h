@@ -197,6 +197,8 @@ private:
 public:
     virtual FReply NativeOnKeyDown(const FGeometry& InGeometry, const FKeyEvent& InKeyEvent) override;
 
+    UFUNCTION()
+        int HIGetFPSIndex();
 
     UFUNCTION(BlueprintCallable)
         void HIRightSubMenuMovement();
