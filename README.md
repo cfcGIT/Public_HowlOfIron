@@ -19,3 +19,9 @@ When our main character is near he use a FlameThrower, in a middle distance he u
 
 In this game we play as Vincent Volk a mechanical Werewolf. We use Gameplay Ability System to develop our combat. We created diferents abilities for each hit of our character, this can allow us to make diferents powers in each hit in our combo system, also we create diferents state abilities that allow us the behaviors mention in the Section "Enemies Behavior" like Combat state or Inmunity State. More stuff was a long list of task than we develop to allow Design departament create a difficult abilities or actions in a easy way in Blueprints.
 After this project I can say I have a very good experience using Gameplay Ability System and I'm looking forward to start a new project using it.
+
+
+## Merge Tool
+
+During this project we have a problem with the optimization of the game. Our enviroment was procedural and very small pieces, in our first map we have a 40000 actos in scene. I develop with other programmer a tool that allow us to group and merge actors in the scene. We inherit from BoxTrigger and make some filters to select actors.
+The first method is select all that is inside the trigger, the second method filters actor by staticMesh, it only select the actors that have the mesh filter, also we upgrade this filter became an array filter and use it with two or more static mesh. The third method is similar than the second one, but it filter by Material of the StaticMesh, also it was upgraded a few days after with the array filter. The last mode allow us to create Instanciated Actors, it create an Actor with the Instanced Actor component and copy the transform of the selections to the component.
