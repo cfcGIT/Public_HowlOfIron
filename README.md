@@ -1,5 +1,10 @@
 # Howl Of Iron
 
+Howl of Iron is a 3rd Person Action Adventure game blending HUNT & COMBAT.
+
+The player take control of Vincent Volk, a renowned engineer and former Red Gear worker who lived a hard childhood and after suffering the loss of his loved ones, his wife and daughter because of carbogenosis, decides to completely dehumanize and transfer his consciousness to a mechanical werewolf with which to destroy everything that once harmed him and  consummating his revenge.
+
+
 Howl of Iron was developed as master tesis of my games programing master degree. It was developed by 17 students of 4 different master degrees: game programing, game art, game design and production. We developed the game in 9 months using Unreal Engine by 16Gears.
 
 <a href="https://16-gears.itch.io/howl-of-iron">More information about the project</a>
