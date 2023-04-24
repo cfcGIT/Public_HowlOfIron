@@ -2,6 +2,7 @@
 
 
 <a href="https://16-gears.itch.io/howl-of-iron">More information about the project</a>
+<br/>
 <a href="https://store.steampowered.com/app/2235790/Howl_of_Iron">Steam link to the game</a>
 
 
